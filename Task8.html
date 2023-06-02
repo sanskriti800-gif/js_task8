@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Train Animation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    #train {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      background-image: url('https://cdn.vectorstock.com/i/thumb-large/90/51/old-train-vector-2199051.jpg"');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      margin-bottom: 20px;
+      transition: left 1s linear;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #3897f0;
+      border: none;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="train"></div>
+    <button onclick="startTrain()">Start</button>
+    <button onclick="stopTrain()">Stop</button>
+  </div>
+
+  <script>
+    var trainElement = document.getElementById("train");
+    var animationInterval;
+    var currentPosition = 0;
+
+    function startTrain() {
+      animationInterval = setInterval(moveTrain, 10);
+    }
+
+    function moveTrain() {
+      var windowWidth = window.innerWidth;
+      var trainWidth = trainElement.offsetWidth;
+
+      currentPosition += 1;
+      trainElement.style.left = currentPosition + "px";
+
+      if (currentPosition + trainWidth >= windowWidth) {
+        currentPosition = -trainWidth;
+      }
+    }
+
+    function stopTrain() {
+      clearInterval(animationInterval);
+    }
+  </script>
+</body>
+</html>
